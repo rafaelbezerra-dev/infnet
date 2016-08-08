@@ -1,0 +1,25 @@
+
+public class Jacobi {
+
+	public static void jacobi(double[][] A, double[] b) {
+		int i, j, k;
+		boolean _return_ = true;
+		float sum = 0;
+		int max = 1000;
+		float[] x = new float[A.length];
+		float[] x0 = new float[A.length];
+		
+//		if (diagonallyDominant(A)){
+		for (int k = 0; k < x0.length; k++) {
+			float f = x0[k];
+			
+		}
+//		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
