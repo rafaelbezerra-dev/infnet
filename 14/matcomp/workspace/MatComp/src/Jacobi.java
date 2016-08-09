@@ -40,7 +40,7 @@ public class Jacobi {
 		float[] x = new float[A.length];
 		float[] x0 = new float[A.length];
 		
-//		if (makeDominant(A, b)){
+		if (isDagonallyDominant(A)){
 			for (k = 0; k < max; k++) {
 				for (i = 0; i < A.length; i++) {
 					sum = 0;
@@ -81,11 +81,11 @@ public class Jacobi {
 			else {
 				_return_ = true;
 			}
-//		}
-//		else{
-//            System.out.println("The system isn't diagonally dominant: " + 
-//                    "The method cannot guarantee convergence.");
-//        }
+		}
+		else{
+            System.out.println("The system isn't diagonally dominant: " + 
+                    "The method cannot guarantee convergence.");
+        }
 	}
 	
 	public static void main(String[] args) {
