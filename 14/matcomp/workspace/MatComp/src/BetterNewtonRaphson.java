@@ -37,7 +37,7 @@ public class BetterNewtonRaphson {
         final double c = Double.parseDouble(args[0]);
         final double epsilon = 1e-15;		// error tolerance
         final int maxIterations = 20;
-        final boolean debug = args.length > 1 ? Boolean.parseBoolean(args[2]) : false; 
+        final boolean debug = args.length > 2 ? Boolean.parseBoolean(args[2]) : false; 
         double xi = args.length > 1 ? Double.parseDouble(args[1]) : 1; 				// initial guess
         int i;
         
