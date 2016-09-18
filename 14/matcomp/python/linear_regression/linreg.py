@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 pow2 = lambda x: x**2
+mean = lambda x: sum(x)/len(x)
 
 def a1(x, y):
     n = len(x)
@@ -12,10 +13,9 @@ def a1(x, y):
         sumxy += x[i] * y[i]
         sumx2 += pow2(x[i])
 
-    return ((n * sumXY) - (sumX * sumY))/((n * sumXSq) - pow2(sumX))
+    return ((n * sumxy) - (sumx * sumy))/((n * sumx2) - pow2(sumx))
 
 def a0(x, y, a1):
-    mean = lambda x: sum(x)/len(x)
     return mean(y) - a1 * mean(x)
 
 
@@ -24,7 +24,31 @@ def main():
     y = [0.5, 2.5, 2.0, 4.0, 3.5, 6.0, 5.5]
     _a1 = a1(x, y)
     _a0 = a0(x, y, _a1)
-    print(_a1, _a0)
+    print('_a1:', _a1, ', _a0:', _a0)
+    print('y = '+ str(_a1) + '*x + ' + str(_a0))
+
+    n = len(x)
+    st, sr = 0, 0
+    meany = mean(y)
+    for i in range(n):
+        st = st + pow2(y[i] - meany)
+        sr = sr + pow2(y[i] - _a1*x[i] - _a0)
+
+    syx = pow(sr/(n - 2), 0.5)
+    r2 = (st - sr)/st
+    print('st:', st)
+    print('sr:', sr)
+    print('syx:', syx)
+    print('r²:', r2)
+
+    sol = lambda n: _a1 * n + _a0
+
+    plt.plot(x, y, 'ro')
+    t1 = np.arange(min(x) - 1, max(x) + 1, 0.1)
+    plt.plot(t1, sol(t1), 'k')
+
+    plt.axis([min(x) - 1, max(x) + 1, min(y) - 1, max(y) + 1])
+    plt.show()
 
 
 if __name__ == '__main__':
