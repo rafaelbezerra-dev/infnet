@@ -25,27 +25,30 @@ public class BetterNewtonRaphson {
 	 */
 	
 	static double f(double x, double c) {
-		return Math.pow(x, 2) - c;
+//		return Math.pow(x, 2) - c;
+		return Math.pow(x, 10) - c;
 	}
 	
 	static double fprime(double x) {
-		return 2 * x;
+//		return 2 * x;
+		return 10 * Math.pow(x, 9);
 	}
 	
 	public static void main(String[] args) {
         // read in the command-line argument				
-        final double c = Double.parseDouble(args[0]);
+//        final double c = Double.parseDouble(args[0]);
+        final double c = 1;
         final double epsilon = 1e-15;		// error tolerance
-        final int maxIterations = 20;
+        final int maxIterations = 100;
         final boolean debug = args.length > 2 ? Boolean.parseBoolean(args[2]) : false; 
-        double xi = args.length > 1 ? Double.parseDouble(args[1]) : 1; 				// initial guess
-        int i;
+//        double xi = args.length > 1 ? Double.parseDouble(args[1]) : 1; 				// initial guess
+        double xi = 0.5;
         
-        for (i = 0; i < maxIterations; i++) {
+        for (int i = 0; i < maxIterations; i++) {
 			double x = xi - f(xi, c)/fprime(xi);
 			
 			if (debug) {
-				System.out.println("xi: " + xi + "; x: " + x + "; err: " + (epsilon * Math.abs(x)));
+				System.out.println(i + " - xi: " + xi + "; x: " + x + "; err: " + (epsilon * Math.abs(x)));
 			}
 			
 			if(Math.abs(x - xi) <= epsilon * Math.abs(x)) {				
