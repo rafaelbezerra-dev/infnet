@@ -35,7 +35,7 @@ func trapm(h float64, n int, f function) float64 {
 }
 
 func simp13(h, f0, f1, f2 float64) float64 {
-	return 2 * h(f0+(4*f1)+f2) / 6
+	return 2 * h * (f0 + (4 * f1) + f2) / 6
 }
 
 func simp13m(h float64, n int, f function) float64 {
@@ -88,13 +88,44 @@ func simpInt(a, b float64, n int, f function) float64 {
 		}
 	}
 
-	return 0.0
+	return sum
 }
 
-func main() {
+func _runSimp13() {
 	interval := 0.8
 	n := 10
 	h := float64(interval / float64(n))
 	fmt.Printf("h = %v\n", h)
-	fmt.Printf("RESULT: %v\n", trapm(h, n, f))
+	fmt.Printf("RESULT (SIMP 13): %v\n", simp13m(h, n, f))
+}
+
+func _runSimp38() {
+	interval := 0.8
+	n := 10
+	h := float64(interval / float64(n))
+	fmt.Printf("h = %v\n", h)
+	res := simp38(
+		h,
+		f(float64(n-3)*h),
+		f(float64(n-2)*h),
+		f(float64(n-1)*h),
+		f(float64(n)*h))
+	fmt.Printf("RESULT (SIMP 38): %v\n", res)
+}
+
+func _runSimpInt() {
+	a, b := 0.0, 0.8
+	n := 10
+	fmt.Printf("INTERVAL a:%v & b:%v\n", a, b)
+	fmt.Printf("RESULT (SIMP INT): %v\n", simpInt(a, b, n, f))
+}
+
+func main() {
+	_runSimp13()
+	fmt.Println("")
+	_runSimp38()
+	fmt.Println("")
+	_runSimpInt()
+	fmt.Println("")
+
 }
