@@ -38,7 +38,11 @@ func trapEq(n int, a, b float64) float64 {
 func printI(arr [10][10]float64) {
 	for i := 0; i < len(arr); i++ {
 		for j := 0; j < len(arr[i]); j++ {
-			fmt.Printf("%.4f ", arr[i][j])
+			if arr[i][j] > 0 {
+				fmt.Printf("%.4f ", arr[i][j])
+			} else {
+				fmt.Printf("       ")
+			}
 		}
 		fmt.Print("\n")
 	}
@@ -52,22 +56,24 @@ func romberg(a, b float64, maxit int, es float64) float64 {
 	n := 1
 
 	I[1][1] = trapEq(n, a, b)
-	printI(I)
+	// printI(I)
 	iter := 0
 
 	for {
 		iter++
 		n = int(pow(2.0, float64(iter)))
 		I[iter+1][1] = trapEq(n, a, b)
-		printI(I)
+		// printI(I)
 
 		for k := 2; k <= iter+1; k++ {
 			j := 2 + iter - k
 			_4k1 := pow(4.0, float64(k-1))
 			I[j][k] = (_4k1*I[j+1][k-1] - I[j][k-1]) / (_4k1 - 1)
-			printI(I)
+			// printI(I)
 
 		}
+
+		printI(I)
 
 		ea := math.Abs((I[1][iter+1]-I[2][iter])/I[1][iter+1]) * 100.0
 		fmt.Printf("error: %v\n\n\n", ea)
@@ -82,5 +88,5 @@ func romberg(a, b float64, maxit int, es float64) float64 {
 func main() {
 	// fmt.Println("Hello ", math.Abs(-86))
 	es := pow(10.0, -6)
-	fmt.Printf("%v \n", romberg(0.0, 0.8, 5, es))
+	fmt.Printf("RESULT %v \n", romberg(0.0, 0.8, 99, es))
 }
