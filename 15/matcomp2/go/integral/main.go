@@ -36,7 +36,7 @@ func trapm(h float64, n int, f function) float64 {
 
 func main() {
 	interval := 0.8
-	n := 10
+	n := 70
 	h := float64(interval / float64(n))
 	fmt.Printf("h = %v\n", h)
 	fmt.Printf("RESULT: %v\n", trapm(h, n, f))

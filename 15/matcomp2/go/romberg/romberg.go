@@ -62,6 +62,7 @@ func romberg(a, b float64, maxit int, es float64) float64 {
 	for {
 		iter++
 		n = int(pow(2.0, float64(iter)))
+		fmt.Printf("h%v  ---- \n\n", n)
 		I[iter+1][1] = trapEq(n, a, b)
 		// printI(I)
 
@@ -87,6 +88,6 @@ func romberg(a, b float64, maxit int, es float64) float64 {
 
 func main() {
 	// fmt.Println("Hello ", math.Abs(-86))
-	es := pow(10.0, -6)
+	es := 0.5
 	fmt.Printf("RESULT %v \n", romberg(0.0, 0.8, 99, es))
 }
