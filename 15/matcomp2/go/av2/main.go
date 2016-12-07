@@ -1,22 +1,17 @@
 package main
 
-import "github.com/rnbez/infnet/15/matcomp2/go/av2/hungekutta"
+import "github.com/rnbez/infnet/15/matcomp2/go/av2/extra/ex25_21"
 
 func main() {
-	// var run string
-	// flag.StringVar(&run, "run", "no-value", "you must provide the name of the method you want to run")
-	// println(run)
-	// switch run {
-	// case "euler":
-	// 	euler.Euler()
-	// 	return
-	// case "runge-kutta":
-	// 	return
-	// default:
-	// 	println("You provided an invalid method name")
-	// }
-
+	// println("EULER -----\n\n\n")
 	// euler.Euler()
+
+	// println("\n\n\nRK 2ª Ordem -----\n\n\n")
 	// hungekutta.HungeKutta2()
-	hungekutta.HungeKutta4()
+
+	// println("\n\n\nRK 4ª Ordem -----\n\n\n")
+	// hungekutta.HungeKutta4()
+
+	println("\n\n\nEx 25.21 -----\n\n\n")
+	ex25_21.Solve()
 }

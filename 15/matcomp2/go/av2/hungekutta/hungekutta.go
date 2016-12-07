@@ -1,6 +1,7 @@
 package hungekutta
 
 import "fmt"
+import "math"
 
 func heun(x, y, h float64) float64 {
 	k1 := f(x, y)
@@ -49,6 +50,8 @@ func HungeKutta2() {
 		y_ralson, err(y, y_ralson),
 	)
 
+	abs := math.Abs
+
 	for i := 0; i < nc; i++ {
 		// y = ralston(x, y, dx)
 		y_heun = heun(x, y_heun, dx)
@@ -62,9 +65,9 @@ func HungeKutta2() {
 			"%10.4f %10.4f %10.4f %10.4f %10.4f %10.4f    %10.4f %10.4f\n",
 			x,
 			y,
-			y_heun, err(y, y_heun),
-			y_mid_point, err(y, y_mid_point),
-			y_ralson, err(y, y_ralson),
+			y_heun, abs(err(y, y_heun)),
+			y_mid_point, abs(err(y, y_mid_point)),
+			y_ralson, abs(err(y, y_ralson)),
 		)
 	}
 
